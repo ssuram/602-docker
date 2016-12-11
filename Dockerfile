@@ -17,10 +17,10 @@ RUN \
 RUN \
   pip install git+https://github.com/vistrails/vistrails.git@v2.2
 
-ADD startup.xml /root/.vistrails/startup.xml
+COPY startup.xml /root/.vistrails/startup.xml
 
-ADD nigeria-vt.vt nigeria-vt.vt
+COPY nigeria-vt.vt /usr/src/nigeria-vt.vt
 
-ADD run_workflow.py run_workflow.py
+COPY run_workflow.py /usr/src/run_workflow.py
 
-CMD python run_workflow.py nigeria-vt.vt nigeria-avg
+ENTRYPOINT ["python", "/usr/src/run_workflow.py", "/usr/src/nigeria-vt.vt", "alias"]
